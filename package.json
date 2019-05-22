@@ -10,6 +10,8 @@
   "dependencies": {
     "buefy": "^0.7.6",
     "core-js": "^2.6.5",
+    "ethereum-address": "0.0.4",
+    "instascan": "git+https://github.com/schmich/instascan.git#master",
     "vue": "^2.6.10",
     "web3": "^1.0.0-beta.55"
   },
