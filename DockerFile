@@ -1,0 +1,12 @@
+FROM node:10.15.3-alpine
+RUN apk add --no-cache git
+
+ADD . /faucet-dapp
+WORKDIR /faucet-dapp
+RUN rm -rf .git
+
+RUN apk add --no-cache --virtual .build-deps alpine-sdk python \
+ && npm install --silent \
+ && apk del .build-deps
+
+CMD ["npm", "start"]
