@@ -12,12 +12,12 @@ export default {
 
 <style>
 #faucet-header {
-  margin-top: 6em;
-  margin-bottom: 6em;
-  margin-left: 6em;
+  margin-top: 4em;
+  margin-bottom: 4em;
 }
 
 #main {
   font-size: 2em;
+  text-align: center;
 }
 </style>
