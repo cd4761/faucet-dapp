@@ -3,7 +3,7 @@
     <b-field>
       <b-select v-model="selected">
         <option>PETH</option>
-        <option>TOKEN</option>
+        <option>PDAI</option>
       </b-select>
       <b-input class="input-account" placeholder="Enter your testnet account address"
         v-on:click="requestFaucet"
@@ -18,7 +18,7 @@
       <b-button
         v-on:click="scanQrcode"
       >
-        <img class="qrcode-img" src="../../public/qrcode.png" alt=""> 
+        <img class="qrcode-img" src="../../public/qrcode.png" alt="">
       </b-button>
       <p class="input-qrcode-label">Get account from QR code</p>
       <div>
@@ -98,7 +98,7 @@ export default {
 
 .qrcode-container {
   margin-top: 20px;
-  width: 100%; 
+  width: 100%;
   text-align: center;
 }
 

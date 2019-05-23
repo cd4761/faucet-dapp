@@ -11,6 +11,7 @@
     <faucet-footer
       v-bind:transactionHash="transactionHash"
       v-bind:errorMessage="errorMessage"
+      v-bind:explorerTxPrefix="explorerTxPrefix"
     ></faucet-footer>
   </div>
 </template>
@@ -28,6 +29,7 @@ export default {
     return {
       web3: null,
       operator: null,
+      explorerTxPrefix: '',
       transactionHash: '',
       errorMessage: '',
     }
@@ -38,13 +40,11 @@ export default {
     'faucet-footer': FaucetFooter,
   },
   created () {
-    const that = this;
-    this.web3 = new Web3('http://localhost:8545');
-    this.web3.eth.getAccounts((err, accounts) => {
-      if (!err) {
-        that.operator = accounts[0]
-      }
-    });
+    this.web3 = new Web3(process.env.PROVIDER_URL || 'http://carl-node1.onther-dev.com:8545');
+    this.operator = process.env.OPERATOR || "0x55FDa7601Ffa55F61B819642816460aA24883F7f";
+
+    // this doesn't work..
+    this.explorerTxPrefix = process.env.EXPLORER_TX_PREFIX || "http://explorer.onther-dev.com/tx/";
   },
   methods: {
     faucetPeth: async function (account) {

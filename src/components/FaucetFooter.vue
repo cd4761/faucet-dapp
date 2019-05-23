@@ -3,7 +3,8 @@
     <b-message type="is-success"
       v-if="this.transactionHash !== ''"
     >
-     <a v-bind:href="`http://faucet.faraday.com/${this.transactionHash}`" target="_blank">{{ transactionHash }}</a>
+      <!-- TODO: use explorerTxPrefix as prefix -->
+      <a v-bind:href="`http://faucet.faraday.com/${this.transactionHash}`" target="_blank">{{ transactionHash }}</a>
     </b-message>
     <b-message type="is-danger"
       v-else-if="this.errorMessage"
