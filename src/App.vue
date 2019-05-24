@@ -29,6 +29,7 @@ export default {
     return {
       web3: null,
       operator: null,
+      requestableDaiContract: null,
       explorerTxPrefix: '',
       transactionHash: '',
       errorMessage: '',
@@ -42,7 +43,8 @@ export default {
   created () {
     this.web3 = new Web3(process.env.PROVIDER_URL || 'http://carl-node1.onther-dev.com:8545');
     this.operator = process.env.OPERATOR || "0x55FDa7601Ffa55F61B819642816460aA24883F7f";
-    this.explorerTxPrefix = process.env.EXPLORER_TX_PREFIX || "http://explorer.onther-dev.com/tx/";
+    this.explorerTxPrefix = process.env.EXPLORER_TX_PREFIX || "http://explorer.carl-node3.onther-dev.com/tx/";
+    this.requestableDaiContract = process.env.REQUESTABLE_DAI_CONTRACT || "0x7def87af38d6db4e6aafb83093c7d1c0622e60fd";
   },
   methods: {
     faucetPeth: async function (account) {
@@ -67,8 +69,8 @@ export default {
         this.transactionHash = '';
         return;
       }
-      const data = `0x40c10f19000000000000000000000000${account.substring(2)}0000000000000000000000000000000000000000000000000de0b6b3a7640000`
-      this.web3.eth.sendTransaction({from: this.operator, to: '0xb25655a694886557fe3c52177c70b058b120e2b1', data: data, gasPrice: 1}, (err, hash) => {
+      const data = `0x40c10f19000000000000000000000000${account.substring(2)}000000000000000000000000000000000000000000000000000000000000000a`
+      this.web3.eth.sendTransaction({from: this.operator, to: this.requestableDaiContract, data: data, gasPrice: 1}, (err, hash) => {
         if (err) {
           this.errorMessage = err;
           this.transactionHash = '';
