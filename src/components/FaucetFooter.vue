@@ -3,8 +3,7 @@
     <b-message type="is-success"
       v-if="this.transactionHash !== ''"
     >
-      <!-- TODO: use explorerTxPrefix as prefix -->
-      <a v-bind:href="`http://faucet.faraday.com/${this.transactionHash}`" target="_blank">{{ transactionHash }}</a>
+      <a v-bind:href="`${explorerTxPrefix}${transactionHash}`" target="_blank">{{ transactionHash }}</a>
     </b-message>
     <b-message type="is-danger"
       v-else-if="this.errorMessage"
@@ -16,7 +15,7 @@
 
 <script>
 export default {
-  props: ['transactionHash', 'errorMessage']
+  props: ['transactionHash', 'errorMessage', 'explorerTxPrefix']
 }
 </script>
 

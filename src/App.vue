@@ -42,8 +42,6 @@ export default {
   created () {
     this.web3 = new Web3(process.env.PROVIDER_URL || 'http://carl-node1.onther-dev.com:8545');
     this.operator = process.env.OPERATOR || "0x55FDa7601Ffa55F61B819642816460aA24883F7f";
-
-    // this doesn't work..
     this.explorerTxPrefix = process.env.EXPLORER_TX_PREFIX || "http://explorer.onther-dev.com/tx/";
   },
   methods: {
