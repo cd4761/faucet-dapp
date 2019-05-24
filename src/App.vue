@@ -69,7 +69,7 @@ export default {
         this.transactionHash = '';
         return;
       }
-      const data = `0x40c10f19000000000000000000000000${account.substring(2)}000000000000000000000000000000000000000000000000000000000000000a`
+      const data = `0x40c10f19000000000000000000000000${account.substring(2)}0000000000000000000000000000000000000000000000008AC7230489E80000`
       this.web3.eth.sendTransaction({from: this.operator, to: this.requestableDaiContract, data: data, gasPrice: 1}, (err, hash) => {
         if (err) {
           this.errorMessage = err;
