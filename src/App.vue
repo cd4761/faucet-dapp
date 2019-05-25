@@ -47,7 +47,7 @@ export default {
   },
   methods: {
     faucetPeth: async function (account) {
-      if (!this.web3.utils.isAddress(account)) {
+      if (!this.web3.isAddress(account)) {
         this.errorMessage = 'invalid address';
         this.transactionHash = '';
         return;
@@ -55,7 +55,7 @@ export default {
 
       const self = this;
       // A browser sends an OPTIONS request before a POST request, essentially to check with the server that it's allowed to send the POST request.
-      axios.post('http://54.159.124.43:3000/transactions/peth', {
+      axios.post('http://localhost:3000/transactions/peth', {
         to: account
       })
       .then(function (response) {
@@ -68,7 +68,7 @@ export default {
       });
     },
     faucetToken: async function (account) {
-      if (!this.web3.utils.isAddress(account)) {
+      if (!this.web3.isAddress(account)) {
         this.errorMessage = 'invalid address';
         this.transactionHash = '';
         return;
@@ -76,7 +76,7 @@ export default {
       
       const self = this;
       // A browser sends an OPTIONS request before a POST request, essentially to check with the server that it's allowed to send the POST request.
-      axios.post('http://54.159.124.43:3000/transactions/pdai', {
+      axios.post('http://localhost:3000/transactions/pdai', {
         to: account
       })
       .then(function (response) {
