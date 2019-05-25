@@ -3,24 +3,26 @@ var router = express.Router();
 
 var Web3 = require('web3');
 var Tx = require('ethereumjs-tx');
+var config = require('../src/config.json');
 
+let web3;
 if (typeof web3 !== 'undefined') {
   web3 = new Web3(web3.currentProvider);
 } else {
   web3 = new Web3(new Web3.providers.HttpProvider("http://carl-node1.onther-dev.com:8545"));
 }
 
-var privateKey = new Buffer('b71c71a67e1177ad4e901695e1b4b9ee17ae16c6668d313eac2f96dbcda3f292', 'hex');
-var owner = '0x55fda7601ffa55f61b819642816460aa24883f7f';
-var pdai = '0xb8fe71ffb2fa54784381acba2d61adb9939977d7';
+var privateKey = new Buffer(config.privateKey, 'hex');
+var operator = config.operator;
+var pdai = config.pdai;
 
 var RequestableDaiJSON = require('../contracts/RequestableDai.json');
 var RequestableDaiContract = web3.eth.contract(RequestableDaiJSON);
 var RequestableDai = RequestableDaiContract.at(pdai);
 
-router.post('/peth', function(req, res, next) {
+router.post('/peth', function(req, res) {
   var to = req.body.to;
-  var nonce = web3.eth.getTransactionCount(owner);
+  var nonce = web3.eth.getTransactionCount(operator);
   var rawTx = {
     nonce: nonce,
     gasPrice: '0x1',
@@ -41,12 +43,12 @@ router.post('/peth', function(req, res, next) {
   });
 });
 
-router.post('/pdai', function(req, res, next) {
+router.post('/pdai', function(req, res) {
   var to = req.body.to;
-  var nonce = web3.eth.getTransactionCount(owner);
+  var nonce = web3.eth.getTransactionCount(operator);
   var data = RequestableDai.mint.getData(to, 1e19);
   var gasLimit = web3.eth.estimateGas({
-    from: owner,
+    from: operator,
     to: pdai,
     data: data
   });

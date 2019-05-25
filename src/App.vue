@@ -23,6 +23,7 @@ import FaucetFooter from './components/FaucetFooter.vue';
 
 import Web3 from 'web3';
 import axios from 'axios';
+import config from '../src/config.json';
 
 export default {
   name: 'app',
@@ -41,9 +42,13 @@ export default {
     'faucet-footer': FaucetFooter,
   },
   created () {
-    this.web3 = new Web3(process.env.PROVIDER_URL || 'http://carl-node1.onther-dev.com:8545');
-    this.operator = process.env.OPERATOR || "0x55FDa7601Ffa55F61B819642816460aA24883F7f";
-    this.explorerTxPrefix = process.env.EXPLORER_TX_PREFIX || "http://explorer.carl-node3.onther-dev.com/tx/";
+    this.web3 = new Web3(config.providerURL);
+    this.operator = config.operator;
+    this.explorerTxPrefix = config.explorerTxPrefix;
+
+    console.log(`
+pdai contract address: ${config.pdai}
+`);
   },
   methods: {
     faucetPeth: async function (account) {
