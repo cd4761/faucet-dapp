@@ -55,7 +55,7 @@ export default {
 
       const self = this;
       // A browser sends an OPTIONS request before a POST request, essentially to check with the server that it's allowed to send the POST request.
-      axios.post('http://localhost:3000/transactions/peth', {
+      axios.post('http://54.159.124.43:3000/transactions/peth', {
         to: account
       })
       .then(function (response) {
@@ -76,7 +76,7 @@ export default {
       
       const self = this;
       // A browser sends an OPTIONS request before a POST request, essentially to check with the server that it's allowed to send the POST request.
-      axios.post('http://localhost:3000/transactions/pdai', {
+      axios.post('http://54.159.124.43:3000/transactions/pdai', {
         to: account
       })
       .then(function (response) {
