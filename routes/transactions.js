@@ -12,7 +12,7 @@ if (typeof web3 !== 'undefined') {
   web3 = new Web3(new Web3.providers.HttpProvider("http://carl-node1.onther-dev.com:8545"));
 }
 
-var privateKey = new Buffer(config.privateKey, 'hex');
+var privateKey = Buffer.from(config.operatorKey, 'hex');
 var operator = config.operator;
 var pdai = config.pdai;
 
