@@ -46,9 +46,7 @@ export default {
     this.operator = config.operator;
     this.explorerTxPrefix = config.explorerTxPrefix;
 
-    console.log(`
-pdai contract address: ${config.pdai}
-`);
+    console.log('pdai contract address:', config.pdai);
   },
   methods: {
     faucetPeth: async function (account) {
@@ -60,7 +58,7 @@ pdai contract address: ${config.pdai}
 
       const self = this;
       // A browser sends an OPTIONS request before a POST request, essentially to check with the server that it's allowed to send the POST request.
-      axios.post('http://localhost:3000/transactions/peth', {
+      axios.post('http://localhost:3000/peth', {
         to: account
       })
       .then(function (response) {
@@ -81,7 +79,7 @@ pdai contract address: ${config.pdai}
       
       const self = this;
       // A browser sends an OPTIONS request before a POST request, essentially to check with the server that it's allowed to send the POST request.
-      axios.post('http://localhost:3000/transactions/pdai', {
+      axios.post('http://localhost:3000/pdai', {
         to: account
       })
       .then(function (response) {
