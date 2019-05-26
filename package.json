@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "server": "pm2 start bin/www",
+    "server": "PORT=3000 DEBUG=faucet-dapp:server pm2 start bin/www",
     "vue": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
