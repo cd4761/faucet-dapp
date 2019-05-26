@@ -23,7 +23,7 @@ import FaucetFooter from './components/FaucetFooter.vue';
 
 import Web3 from 'web3';
 import axios from 'axios';
-import config from '../src/config.json';
+import config from '../config.json';
 
 export default {
   name: 'app',

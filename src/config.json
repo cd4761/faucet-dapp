@@ -1,7 +1,0 @@
-{
-  "providerURL": "http://carl-node1.onther-dev.com:8545",
-  "explorerTxPrefix": "http://explorer.carl-node3.onther-dev.com/tx/",
-  "operatorKey": "b71c71a67e1177ad4e901695e1b4b9ee17ae16c6668d313eac2f96dbcda3f292",
-  "operator": "0x55FDa7601Ffa55F61B819642816460aA24883F7f",
-  "pdai": "0xb8fe71ffb2fa54784381acba2d61adb9939977d7"
-}

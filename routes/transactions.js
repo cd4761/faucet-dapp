@@ -3,13 +3,13 @@ var router = express.Router();
 
 var Web3 = require('web3');
 var Tx = require('ethereumjs-tx');
-var config = require('../src/config.json');
+var config = require('../config.json');
 
 let web3;
 if (typeof web3 !== 'undefined') {
   web3 = new Web3(web3.currentProvider);
 } else {
-  web3 = new Web3(new Web3.providers.HttpProvider("http://carl-node1.onther-dev.com:8545"));
+  web3 = new Web3(new Web3.providers.HttpProvider(config.providerURL));
 }
 
 var privateKey = Buffer.from(config.operatorKey, 'hex');
