@@ -49,10 +49,12 @@ router.post('/pdai', function(req, res) {
   var to = req.body.to;
   db.forEach(address => {
     if (address === to) {
-      throw new Error(`Address ${to} already given PDAI`);
+      return res.status(400).json({
+        code: -1,
+        errorMessage: `address ${to} already given PDAI`
+      });
     }
   });
-
   var nonce = web3.eth.getTransactionCount(operator);
   var data = RequestableDai.mint.getData(to, 9e18);
   var gasLimit = web3.eth.estimateGas({

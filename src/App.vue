@@ -83,8 +83,13 @@ export default {
         to: account
       })
       .then(function (response) {
-        self.errorMessage = '';
-        self.transactionHash= response.data.hash;
+        if (response.data.errorMessage !== '') {
+          self.errorMessage = response.data.errorMessage;
+          self.transactionHash= '';
+        } else {
+          self.errorMessage = '';
+          self.transactionHash= response.data.hash;
+        }
       })
       .catch(function (error) {
         self.errorMessage = error ;
