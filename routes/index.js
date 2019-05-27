@@ -49,7 +49,7 @@ router.post('/pdai', function(req, res) {
   var to = req.body.to;
   db.forEach(address => {
     if (address === to) {
-      return res.status(400).json({
+      return res.status(200).json({
         code: -1,
         errorMessage: `address ${to} already given PDAI`
       });
