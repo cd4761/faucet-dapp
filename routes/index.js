@@ -19,6 +19,7 @@ var pdai = config.pdai;
 var RequestableDaiJSON = require('../contracts/RequestableDai.json');
 var RequestableDaiContract = web3.eth.contract(RequestableDaiJSON);
 var RequestableDai = RequestableDaiContract.at(pdai);
+var db = {};
 
 router.post('/peth', function(req, res) {
   var to = req.body.to;
@@ -45,6 +46,11 @@ router.post('/peth', function(req, res) {
 
 router.post('/pdai', function(req, res) {
   var to = req.body.to;
+  if (db[to]) {
+    throw new Error(`Address ${to} already given PDAI`);
+  }
+  db[to] = true;
+
   var nonce = web3.eth.getTransactionCount(operator);
   var data = RequestableDai.mint.getData(to, 1e19);
   var gasLimit = web3.eth.estimateGas({
