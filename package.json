@@ -7,7 +7,7 @@
     "vue": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "start-server": "node bin/www"
+    "db:clean": "echo '[]' > db.json"
   },
   "dependencies": {
     "axios": "^0.18.0",

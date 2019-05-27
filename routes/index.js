@@ -3,7 +3,9 @@ var router = express.Router();
 
 var Web3 = require('web3');
 var Tx = require('ethereumjs-tx');
+var fs = require('fs');
 var config = require('../config.json');
+var db = require('../db.json');
 
 let web3;
 if (typeof web3 !== 'undefined') {
@@ -19,7 +21,6 @@ var pdai = config.pdai;
 var RequestableDaiJSON = require('../contracts/RequestableDai.json');
 var RequestableDaiContract = web3.eth.contract(RequestableDaiJSON);
 var RequestableDai = RequestableDaiContract.at(pdai);
-var db = {};
 
 router.post('/peth', function(req, res) {
   var to = req.body.to;
@@ -46,10 +47,11 @@ router.post('/peth', function(req, res) {
 
 router.post('/pdai', function(req, res) {
   var to = req.body.to;
-  if (db[to]) {
-    throw new Error(`Address ${to} already given PDAI`);
-  }
-  db[to] = true;
+  db.forEach(address => {
+    if (address === to) {
+      throw new Error(`Address ${to} already given PDAI`);
+    }
+  });
 
   var nonce = web3.eth.getTransactionCount(operator);
   var data = RequestableDai.mint.getData(to, 1e19);
@@ -66,16 +68,26 @@ router.post('/pdai', function(req, res) {
     to: pdai,
     data: data
   }
-  
+
   var tx = new Tx(rawTx);
   tx.sign(privateKey);
   var serializedTx = tx.serialize();
 
   web3.eth.sendRawTransaction('0x' + serializedTx.toString('hex'), function(err, hash) {
-    return res.status(200).json({
-      code: 0,
-      hash: hash
-    });
+    if (!err) {
+      var contents = fs.readFileSync("db.json");
+      var jsonContent = JSON.parse(contents);
+      jsonContent.push(to);
+
+      fs.writeFile('db.json', JSON.stringify(jsonContent), error => {
+        if (error) console.log(error);
+      });
+
+      return res.status(200).json({
+        code: 0,
+        hash: hash
+      });
+    }
   });
 });
 
