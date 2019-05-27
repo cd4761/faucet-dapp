@@ -54,7 +54,7 @@ router.post('/pdai', function(req, res) {
   });
 
   var nonce = web3.eth.getTransactionCount(operator);
-  var data = RequestableDai.mint.getData(to, 1e19);
+  var data = RequestableDai.mint.getData(to, 9e18);
   var gasLimit = web3.eth.estimateGas({
     from: operator,
     to: pdai,
