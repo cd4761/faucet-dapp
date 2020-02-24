@@ -10,7 +10,7 @@
     "db:clean": "echo '[]' > db.json"
   },
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.18.1",
     "buefy": "^0.7.6",
     "cookie-parser": "^1.4.4",
     "core-js": "^2.6.5",
