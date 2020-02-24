@@ -46,7 +46,7 @@ export default {
     this.operator = config.operator;
     this.explorerTxPrefix = config.explorerTxPrefix;
 
-    console.log('pdai contract address:', config.pdai);
+    console.log('TON contract address:', config.TON);
   },
   methods: {
     faucetPeth: async function (account) {
@@ -79,7 +79,7 @@ export default {
       
       const self = this;
       // A browser sends an OPTIONS request before a POST request, essentially to check with the server that it's allowed to send the POST request.
-      axios.post('/api/pdai', {
+      axios.post('/api/TON', {
         to: account
       })
       .then(function (response) {

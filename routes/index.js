@@ -16,11 +16,11 @@ if (typeof web3 !== 'undefined') {
 
 var privateKey = Buffer.from(config.operatorKey, 'hex');
 var operator = config.operator;
-var pdai = config.pdai;
+var TON = config.TON;
 
-var RequestableDaiJSON = require('../contracts/RequestableDai.json');
-var RequestableDaiContract = web3.eth.contract(RequestableDaiJSON);
-var RequestableDai = RequestableDaiContract.at(pdai);
+var TONJSON = require('../contracts/TON.json');
+var TONContract = web3.eth.contract(TONJSON);
+var TON = TONContract.at(TON);
 
 router.post('/peth', function(req, res) {
   var to = req.body.to;
@@ -45,13 +45,13 @@ router.post('/peth', function(req, res) {
   });
 });
 
-router.post('/pdai', function(req, res) {
+router.post('/TON', function(req, res) {
   var to = req.body.to;
   var nonce = web3.eth.getTransactionCount(operator);
-  var data = RequestableDai.mint.getData(to, 9e18);
+  var data = TON.mint.getData(to, 9e18);
   var gasLimit = web3.eth.estimateGas({
     from: operator,
-    to: pdai,
+    to: TON,
     data: data
   });
 
@@ -59,7 +59,7 @@ router.post('/pdai', function(req, res) {
     nonce: nonce,
     gasPrice: '0x1',
     gasLimit: gasLimit,
-    to: pdai,
+    to: TON,
     data: data
   }
 

@@ -3,7 +3,7 @@
     <b-field>
       <b-select v-model="selected">
         <option>PETH</option>
-        <option>PDAI</option>
+        <option>TON</option>
       </b-select>
       <b-input class="input-account" placeholder="Enter your testnet account address"
         v-on:click="requestFaucet"
