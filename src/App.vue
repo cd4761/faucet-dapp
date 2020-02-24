@@ -2,7 +2,6 @@
   <div id="app">
     <faucet-header></faucet-header>
     <faucet-body
-      v-on:faucet:peth="faucetPeth"
       v-on:faucet:token="faucetToken"
       v-on:clear:data="clearData"
       v-on:send:error="renewErrorMessage">
